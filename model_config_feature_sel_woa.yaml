@@ -1,0 +1,117 @@
+global_settings:
+  random_state: 104179
+  test_size: 0.3
+  cv_folds: 10
+  n_jobs: -1
+
+feature_selection:
+  enabled: true
+  method: 'woa'  # 'woa' or 'lasso'
+  rf_settings:
+    n_estimators: 100
+    max_depth: null
+    min_samples_split: 2
+    importance_threshold: 0.01
+    min_features: 5
+  woa_settings:
+    n_whales: 10
+    max_iter: 20
+    b: 1
+    a_decrease_factor: 0.5
+  lasso_settings:
+    importance_threshold: 0.01  #
+    max_iter: 10000
+
+models:
+  KNN:
+    enabled: true
+    params:
+      n_neighbors: [3, 5, 7, 9, 11]
+      weights: ['uniform', 'distance']
+      metric: ['euclidean', 'manhattan']
+
+  CART:
+    enabled: true
+    params:
+      max_depth: [3, 5, 7, 9, null]
+      min_samples_split: [2, 5, 10]
+      min_samples_leaf: [1, 2, 4]
+
+  Random Forest:
+    enabled: true
+    params:
+      n_estimators: [100, 200, 300]
+      max_depth: [3, 5, 7, null]
+      min_samples_split: [2, 5, 10]
+      min_samples_leaf: [1, 2, 4]
+
+  Gradient Boosting:
+    enabled: true
+    params:
+      n_estimators: [100, 200, 300]
+      learning_rate: [0.01, 0.1, 0.3]
+      max_depth: [3, 5, 7]
+
+  CatBoost:
+    enabled: true
+    params:
+      iterations: [100, 200, 300]
+      learning_rate: [0.01, 0.1, 0.3]
+      depth: [3, 5, 7]
+
+  XGBoost:
+    enabled: true
+    params:
+      n_estimators: [100, 200, 300]
+      learning_rate: [0.01, 0.1, 0.3]
+      max_depth: [3, 5, 7]
+
+  Logistic Regression:
+    enabled: true
+    params:
+      C: [0.001, 0.01, 0.1, 1, 10]
+      penalty: ['l1', 'l2']
+      solver: ['liblinear', 'saga']
+
+  LDA:
+    enabled: true
+    params:
+      solver: ['svd', 'lsqr', 'eigen']
+
+  QDA:
+    enabled: true
+    params:
+      reg_param: [0.0, 0.1, 0.2, 0.3, 0.4]
+
+  SVM:
+    enabled: true
+    params:
+      C: [0.1, 1, 10]
+      kernel: ['rbf', 'linear']
+      gamma: ['scale', 'auto', 0.1, 1]
+
+  Lasso:
+    enabled: true
+    params:
+      C: [0.001, 0.01, 0.1, 1.0, 10.0]
+      max_iter: [1000]
+      tol: [0.0001, 0.001]
+
+  Ridge:
+    enabled: true
+    params:
+      C: [0.001, 0.01, 0.1, 1.0, 10.0]
+      max_iter: [1000]
+      tol: [0.0001, 0.001]
+
+  Elastic Net:
+    enabled: true
+    params:
+      C: [0.001, 0.01, 0.1, 1.0, 10.0]
+      l1_ratio: [0.1, 0.3, 0.5, 0.7, 0.9]
+      max_iter: [1000]
+      tol: [0.0001, 0.001]
+
+  Naive Bayes:
+    enabled: true
+    params: {}
